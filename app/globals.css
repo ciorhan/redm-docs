@@ -565,31 +565,144 @@ a {
   text-underline-offset: 2px;
 }
 
-.docs-content code {
+.docs-content :not(pre) > code {
   font-family: var(--font-mono);
-  font-size: 0.88em;
-  padding: 0.08rem 0.28rem;
+  font-size: 0.85em;
+  color: #ffd39f;
+  padding: 0.1rem 0.3rem;
   border-radius: 0.2rem;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
+  background: #160c07;
+  border: 1px solid #3e2110;
 }
 
 .docs-content pre {
-  padding: 0.8rem 0.95rem;
-  border-radius: 0.2rem;
-  border: 1px solid var(--border);
-  background: #100d09;
+  position: relative;
+  margin: 1rem 0 1.2rem;
+  padding: 1.1rem 1rem 0.95rem;
+  border-radius: 0.35rem;
+  border: 1px solid #3f2212;
+  border-left: 3px solid var(--accent-orange);
+  background: linear-gradient(180deg, #0d0a08 0%, #070707 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
   overflow-x: auto;
 }
 
+.docs-content pre.mdx-code-block {
+  padding-top: 1.9rem;
+}
+
+.docs-content pre.mdx-code-block::before {
+  content: attr(data-language);
+  position: absolute;
+  left: 0.8rem;
+  top: 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent-orange);
+}
+
 html[data-theme="light"] .docs-content pre {
-  background: #e4d2b0;
+  border-color: #d0b38d;
+  border-left-color: var(--accent);
+  background: #f7ecdd;
+  box-shadow: none;
 }
 
 .docs-content pre code {
+  display: block;
+  min-width: max-content;
+  line-height: 1.55;
+  font-size: 0.9rem;
+  color: #f9e7cf;
   border: 0;
   background: transparent;
   padding: 0;
+}
+
+.docs-content .code-line {
+  display: block;
+}
+
+.docs-content .tok-plain {
+  color: #f4eadc;
+}
+
+.docs-content .tok-keyword {
+  color: #ff6b77;
+  font-weight: 600;
+}
+
+.docs-content .tok-string {
+  color: #f5b965;
+}
+
+.docs-content .tok-number {
+  color: #ff9e80;
+}
+
+.docs-content .tok-comment {
+  color: #9e8d79;
+  font-style: italic;
+}
+
+.docs-content .tok-operator {
+  color: #ffd8aa;
+}
+
+html[data-theme="light"] .docs-content pre code {
+  color: #1d140d;
+}
+
+html[data-theme="light"] .docs-content :not(pre) > code {
+  color: #8d2f12;
+  background: #f6e7d2;
+  border-color: #ddb98f;
+}
+
+html[data-theme="light"] .docs-content pre.mdx-code-block::before {
+  color: #8d2f12;
+}
+
+html[data-theme="light"] .docs-content .tok-plain {
+  color: #2a1d13;
+}
+
+html[data-theme="light"] .docs-content .tok-keyword {
+  color: #a90e1b;
+}
+
+html[data-theme="light"] .docs-content .tok-string {
+  color: #9b560d;
+}
+
+html[data-theme="light"] .docs-content .tok-number {
+  color: #c25525;
+}
+
+html[data-theme="light"] .docs-content .tok-comment {
+  color: #7b6653;
+}
+
+html[data-theme="light"] .docs-content .tok-operator {
+  color: #67452c;
+}
+
+.docs-content pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+.docs-content pre::-webkit-scrollbar-track {
+  background: #0c0c0c;
+}
+
+.docs-content pre::-webkit-scrollbar-thumb {
+  background: #4b2b16;
+  border-radius: 99px;
+}
+
+.docs-content pre:hover::-webkit-scrollbar-thumb {
+  background: #6a3e20;
 }
 
 .docs-mobile-header {
