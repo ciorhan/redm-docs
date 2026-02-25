@@ -1,18 +1,43 @@
 # Events
 
-Design events as explicit contracts between server and client.
+Treat every event as a contract with validation and observability.
 
-## Rules
+## Event Contract Template
 
-- Validate payloads on server side
-- Keep event arguments small and typed
-- Log failed validations with context
+- Event name: `<resource>:<action>`
+- Direction: `client -> server` or `server -> client`
+- Payload shape: explicit fields and types
+- Failure behavior: reject, log, and return
 
-## Pattern
+## Server Validation Pattern
 
 ```lua
-RegisterNetEvent("job:start", function(jobId)
-  if type(jobId) ~= "string" then return end
-  -- continue
+RegisterNetEvent("jobs:start", function(payload)
+  local src = source
+
+  if type(payload) ~= "table" then
+    print(("[jobs:start] invalid payload type from %s"):format(src))
+    return
+  end
+
+  local jobId = payload.jobId
+  if type(jobId) ~= "string" or jobId == "" then
+    print(("[jobs:start] invalid jobId from %s"):format(src))
+    return
+  end
+
+  -- continue with validated inputs
 end)
 ```
+
+## Operational Rules
+
+- Validate every field before side effects.
+- Never trust client permissions; re-check on server.
+- Include event name and source in error logs.
+
+## Review Checklist
+
+- Is payload versioned if structure may evolve?
+- Are invalid states observable in logs?
+- Is the event idempotent or protected from double execution?

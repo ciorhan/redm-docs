@@ -1,9 +1,23 @@
 # Resource Guide
 
-Resources should be structured so new contributors can find configuration, shared utilities, and entry points quickly.
+Resource structure should support fast onboarding and safe scaling.
 
-## Core principles
+## Core Principles
 
-- Keep shared logic separate from feature logic
-- Avoid hidden dependencies between resources
-- Version configuration changes with migration notes
+- Separate shared utilities from feature resources.
+- Keep dependencies explicit in `fxmanifest.lua`.
+- Version config changes with migration notes.
+- Prefer small focused resources over large monoliths.
+
+## Resource Lifecycle
+
+1. Design: define ownership, events, and commands.
+2. Build: implement server/client/shared modules.
+3. Validate: run local smoke checks and staging scenarios.
+4. Deploy: roll out with a rollback plan.
+
+## Team Conventions
+
+- Every resource must include a short README with purpose and dependencies.
+- Every resource should have one owner or owning team.
+- Every breaking change must include upgrade instructions.

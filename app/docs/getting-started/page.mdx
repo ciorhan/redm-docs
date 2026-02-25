@@ -1,17 +1,44 @@
 # Installation
 
+Use this page to prepare a new developer machine in less than 30 minutes.
+
 ## Prerequisites
 
 - Node.js 20+
-- A working RedM server artifacts setup
-- Access to your resources repository
+- RedM server artifacts installed and runnable
+- Access to the server repository and resource packages
+- A staging environment for verification before production
 
-## Local setup
+## Local Setup Checklist
 
-1. Install dependencies with `npm install`
-2. Start the docs app with `npm run dev`
-3. Keep docs updates in the same pull request as script changes
+1. Install dependencies:
 
-## Suggested structure
+```bash
+npm install
+```
 
-Keep environment setup scripts and docs in predictable locations so onboarding is fast.
+2. Start docs locally:
+
+```bash
+npm run dev
+```
+
+3. Validate production build:
+
+```bash
+npm run build
+```
+
+4. Confirm your local RedM resource startup order matches staging.
+
+## First Day Outcomes
+
+- You can run docs and inspect all routes.
+- You can update one docs page and verify the build.
+- You can identify where events, commands, and resource manifests live.
+
+## Recommended Repo Hygiene
+
+- Use predictable folder names for resources and shared packages.
+- Keep environment variables documented in one place.
+- Link each docs page to the folder or script it describes.

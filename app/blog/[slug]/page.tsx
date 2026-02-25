@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import SiteHeader from "../../components/site-header";
 import { blogPosts } from "../posts";
 
 type BlogArticlePageProps = {
@@ -35,17 +36,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
 
   return (
     <main className="landing">
-      <header className="landing-header">
-        <Link href="/" className="landing-brand">
-          REDM - The Developer's Outlaw Journal
-        </Link>
-        <nav className="landing-nav" aria-label="Main menu">
-          <Link href="/">Home</Link>
-          <Link href="/docs">Documentation</Link>
-          <Link href="/blog">Blog</Link>
-          <Link href="/contact">Contact</Link>
-        </nav>
-      </header>
+      <SiteHeader />
 
       <article className="blog-article">
         <p className="eyebrow">Blog Article</p>

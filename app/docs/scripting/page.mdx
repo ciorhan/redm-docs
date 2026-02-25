@@ -1,17 +1,44 @@
 # Script Basics
 
-Use one responsibility per script module and keep event names explicit.
+Design scripts for long-term maintenance, not quick patches.
 
-## Naming
+## Rules
 
-- Prefer feature-based folders
-- Use stable event prefixes
-- Keep command names short and unique
+- One resource module should own one feature boundary.
+- Keep event names explicit: `<domain>:<action>`.
+- Never mutate player or world state without validation.
+- Keep server authority for critical gameplay logic.
 
-## Example
+## Suggested Script Layout
+
+```text
+resources/
+  gameplay/
+    jobs/
+      fxmanifest.lua
+      server/
+        main.lua
+        handlers.lua
+      client/
+        main.lua
+      shared/
+        config.lua
+```
+
+## Baseline Pattern
 
 ```lua
-RegisterNetEvent("inventory:open", function()
-  print("Open inventory requested")
+local RESOURCE = "jobs"
+
+RegisterNetEvent(RESOURCE .. ":openMenu", function()
+  local src = source
+  if src == nil then return end
+  print(("Open menu requested by %s"):format(src))
 end)
 ```
+
+## Quality Gates
+
+- No global mutable state without clear ownership.
+- No silent returns for invalid state: log context for operators.
+- All exported functions should include input expectations.

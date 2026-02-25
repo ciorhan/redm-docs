@@ -27,11 +27,13 @@ html[data-theme="light"] {
   --accent-orange-soft: #f7e8d7;
 }
 
-@theme inline {
-  --color-background: var(--bg);
-  --color-foreground: var(--fg);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
+@layer theme {
+  :root {
+    --color-background: var(--bg);
+    --color-foreground: var(--fg);
+    --font-sans: var(--font-sans);
+    --font-mono: var(--font-mono);
+  }
 }
 
 * {

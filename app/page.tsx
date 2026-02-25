@@ -1,20 +1,11 @@
 import Link from "next/link";
+import HeroArt from "./components/hero-art";
+import SiteHeader from "./components/site-header";
 
 export default function Home() {
   return (
     <main className="landing" id="home">
-      <header className="landing-header">
-        <Link href="/" className="landing-brand">
-          REDM - The Developer's Outlaw Journal
-        </Link>
-        <nav className="landing-nav" aria-label="Main menu">
-          <Link href="/">Home</Link>
-          <Link href="/docs">Documentation</Link>
-          <Link href="/blog">Blog</Link>
-          <Link href="/contact">Contact</Link>
-        </nav>
-      </header>
-
+      <SiteHeader />
       <section className="hero">
         <div className="hero-copy">
           <p className="eyebrow">RedM Server Development</p>
@@ -34,13 +25,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hero-art" aria-hidden="true">
-          <div className="sun" />
-          <div className="mesa mesa-back" />
-          <div className="mesa mesa-mid" />
-          <div className="mesa mesa-front" />
-          <div className="horizon" />
-        </div>
+        <HeroArt />
       </section>
 
       <section className="frontier-grid" aria-label="Platform highlights">

@@ -3,39 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMemo, useState } from "react";
+import { docsNavSections } from "./nav";
 import ThemeToggle from "./theme-toggle";
-
-type NavItem = { label: string; href: string };
-type NavSection = { id: string; label: string; items: NavItem[] };
-
-const navSections: NavSection[] = [
-  {
-    id: "getting-started",
-    label: "Getting Started",
-    items: [
-      { label: "Overview", href: "/docs" },
-      { label: "Installation", href: "/docs/getting-started" },
-    ],
-  },
-  {
-    id: "scripting",
-    label: "Scripting",
-    items: [
-      { label: "Script Basics", href: "/docs/scripting" },
-      { label: "Events", href: "/docs/scripting/events" },
-      { label: "Commands", href: "/docs/scripting/commands" },
-    ],
-  },
-  {
-    id: "resources",
-    label: "Resources",
-    items: [
-      { label: "Resource Guide", href: "/docs/resources" },
-      { label: "Folder Structure", href: "/docs/resources/structure" },
-      { label: "Deploy Checklist", href: "/docs/resources/deploy" },
-    ],
-  },
-];
 
 function isItemActive(pathname: string, href: string): boolean {
   return pathname === href;
@@ -52,7 +21,7 @@ export default function DocsShell({ children }: { children: React.ReactNode }) {
 
   const sectionsWithActiveState = useMemo(
     () =>
-      navSections.map((section) => ({
+      docsNavSections.map((section) => ({
         ...section,
         isActive: section.items.some((item) => isItemActive(pathname, item.href)),
       })),

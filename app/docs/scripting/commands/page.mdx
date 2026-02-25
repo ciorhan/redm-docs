@@ -1,18 +1,37 @@
 # Commands
 
-Use commands for operational tools and admin workflows.
+Use commands for operator workflows, diagnostics, and controlled maintenance.
 
-## Guidelines
+## Command Design Rules
 
-- Include permission checks
-- Return clear messages for failure states
-- Keep side effects obvious in command naming
+- Command names should be action-based and explicit.
+- Validate source and permissions before work.
+- Return actionable feedback for success and failure.
+- Keep dangerous operations server-console only.
 
-## Example
+## Safe Admin Command Example
 
 ```lua
-RegisterCommand("reload_jobs", function(source)
-  if source ~= 0 then return end
-  print("Jobs reloaded")
+RegisterCommand("reload_jobs", function(source, args)
+  if source ~= 0 then
+    print("[reload_jobs] denied: command is console only")
+    return
+  end
+
+  local targetJob = args[1] or "all"
+  print(("[reload_jobs] reloading %s"):format(targetJob))
+  -- reload logic here
 end, true)
 ```
+
+## Suggested Categories
+
+- `reload_*`: reconfigure or refresh resources
+- `debug_*`: diagnostics with clear output
+- `admin_*`: operational tools restricted to trusted roles
+
+## Checklist Before Adding A Command
+
+- Does it duplicate existing behavior?
+- Is permission handling strict enough?
+- Is output clear for logs and operators?

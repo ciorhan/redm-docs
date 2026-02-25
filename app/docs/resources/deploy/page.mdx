@@ -1,12 +1,35 @@
 # Deploy Checklist
 
-Before shipping to production:
+Use this runbook before every production release.
 
-- Run `npm run lint`
-- Build docs with `npm run build`
-- Validate server startup logs
-- Confirm critical events and commands in staging
+## Pre-Deploy
 
-## Rollback
+- Run lint and type checks.
+- Build docs and confirm no route regressions.
+- Validate server startup logs in staging.
+- Verify critical events and admin commands manually.
 
-Keep a rollback artifact and last-known-good resource bundle available.
+```bash
+npm run lint
+npm run build
+```
+
+## Release Gate
+
+- Confirm resource version tags are updated.
+- Confirm migration notes for config/data changes.
+- Confirm rollback bundle is ready.
+- Confirm on-call operator is available during rollout.
+
+## Post-Deploy Verification
+
+- Monitor startup and runtime errors for 15-30 minutes.
+- Smoke test login, inventory, jobs, and economy flows.
+- Confirm command responses for operational tools.
+
+## Rollback Plan
+
+1. Stop impacted resources.
+2. Restore last-known-good bundle.
+3. Restart with previous manifest versions.
+4. Log incident notes and root-cause actions.

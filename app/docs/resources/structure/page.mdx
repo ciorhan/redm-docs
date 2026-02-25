@@ -1,16 +1,46 @@
 # Folder Structure
 
-A simple structure that scales:
+Use a structure that maps directly to ownership and runtime concerns.
 
 ```text
 resources/
   core/
+    identity/
+    permissions/
+    inventory/
   gameplay/
-  jobs/
+    jobs/
+    economy/
+    missions/
   ui/
+    hud/
+    menus/
+  tools/
+    admin/
+    diagnostics/
 ```
 
-## Notes
+## Inside A Single Resource
 
-- Group by domain before grouping by technology
-- Keep README files close to complex modules
+```text
+jobs/
+  fxmanifest.lua
+  README.md
+  server/
+    main.lua
+    events.lua
+    commands.lua
+  client/
+    main.lua
+    ui.lua
+  shared/
+    config.lua
+    constants.lua
+```
+
+## Structure Rules
+
+- Group by gameplay domain first, technology second.
+- Keep `shared/` deterministic and side-effect free.
+- Keep command and event handlers in dedicated files.
+- Document non-obvious startup dependencies in README.
