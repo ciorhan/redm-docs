@@ -38,7 +38,7 @@ const navSections: NavSection[] = [
 ];
 
 function isItemActive(pathname: string, href: string): boolean {
-  return pathname === href || pathname.startsWith(`${href}/`);
+  return pathname === href;
 }
 
 export default function DocsShell({ children }: { children: React.ReactNode }) {
