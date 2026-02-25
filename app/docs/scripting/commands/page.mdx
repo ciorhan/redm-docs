@@ -1,0 +1,18 @@
+# Commands
+
+Use commands for operational tools and admin workflows.
+
+## Guidelines
+
+- Include permission checks
+- Return clear messages for failure states
+- Keep side effects obvious in command naming
+
+## Example
+
+```lua
+RegisterCommand("reload_jobs", function(source)
+  if source ~= 0 then return end
+  print("Jobs reloaded")
+end, true)
+```

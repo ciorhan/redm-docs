@@ -1,0 +1,18 @@
+# Events
+
+Design events as explicit contracts between server and client.
+
+## Rules
+
+- Validate payloads on server side
+- Keep event arguments small and typed
+- Log failed validations with context
+
+## Pattern
+
+```lua
+RegisterNetEvent("job:start", function(jobId)
+  if type(jobId) ~= "string" then return end
+  -- continue
+end)
+```

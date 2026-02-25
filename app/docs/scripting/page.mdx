@@ -1,0 +1,17 @@
+# Script Basics
+
+Use one responsibility per script module and keep event names explicit.
+
+## Naming
+
+- Prefer feature-based folders
+- Use stable event prefixes
+- Keep command names short and unique
+
+## Example
+
+```lua
+RegisterNetEvent("inventory:open", function()
+  print("Open inventory requested")
+end)
+```
